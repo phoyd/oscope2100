@@ -10,16 +10,20 @@ To successfully build a project you need to have all development packages instal
 
 Also you need to have fxload utility installed in order to be able to upload firmware in to the oscilloscope.
 
-
 How to BUILD:
-./configure
-make
+cmake
+make 
 make install
-
 
 How to INSTALL:
 
 1. Download and compile dsoextractfw utility from HantekDSO project
+[Depending on your system, you might need to replace this line in dsoextractfw.c
+	file = bfd_openr(filename, "efi-app-ia32");
+ with this line:
+	file = bfd_openr(filename, "pei-i386");
+]
+
 2. Find dso21001.sys file on your DSO-2100 USB drivers CD and put it in the folder with dsoextractfw utility
 3. Rename the dso21001.sys file to uppercase name DSO21001.SYS
 4. Run the program dsoextractfw. It should create two files named "DSO2100_firmware.hex" and "DSO2100_loader.hex"
