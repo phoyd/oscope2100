@@ -12,9 +12,16 @@ find_package(Threads REQUIRED)
 target_link_libraries(oscope2100 PRIVATE Threads::Threads)
 
 #--- gtk2
+
 find_package(GTK2 2.0 REQUIRED gtk)
 include_directories(${GTK2_INCLUDE_DIRS})
 target_link_libraries(oscope2100 PRIVATE ${GTK2_LIBRARIES})
+
+# TODO: Port to GTK3: 
+# find_package(PkgConfig REQUIRED)
+# pkg_check_modules(GTK3 REQUIRED gtk+-3.0)
+# include_directories(${GTK3_INCLUDE_DIRS})
+# target_link_libraries(oscope2100 PRIVATE ${GTK3_LIBRARIES})
 
 #--- libusb
 find_path(LIBUSB_INCLUDE_DIR
