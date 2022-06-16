@@ -28,9 +28,9 @@ $ make install
 3. Move `DSO2100_firmware.hex`  file to `$INSTALL_DIR/share/dso2100/`
 4. Copy the file `$INSTALL_DIR/share/dso2100.rules` to `/etc/udev/rules.d/`
 5. `udevadm control --reload-rules && udevadm trigger`
+6. The rules file changes to group of the DSO-2100 to `plugdev`. You might need to add yourself to the `plugdev` group in order to use the scope.
 
 Now the firmware should be loaded automatically when the scope is connected to an USB port.
 Once the firmware is loaded, the blue LED on the scope starts blinking.
 You can now run software by typing "oscope2100" command in the console or make a shortcut on your desktop.
-Make sure you have sufficient privilegies on the USB device or run as root (probably not recommended in the long run).
 
