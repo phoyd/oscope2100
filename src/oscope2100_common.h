@@ -20,4 +20,11 @@ std::string f2str(double,bool=false);
 std::string pad(std::string s,unsigned int n);
 bool prepare_expstr();
 
+#define TO_STRING2(X) #X
+#define TO_STRING(X) TO_STRING2(X)
+#define LOG_PREFIX // __FILE__ "(" TO_STRING(__LINE__) "): "
+#define ERROR(...)   fprintf(stderr, LOG_PREFIX "ERROR  : " __VA_ARGS__)
+#define WARNING(...) fprintf(stderr, LOG_PREFIX "WARNING: " __VA_ARGS__)
+#define INFO(...)    fprintf(stderr, LOG_PREFIX "INFO   : " __VA_ARGS__)
+#define DEBUG(...)   fprintf(stderr, LOG_PREFIX "DEBUG  : " __VA_ARGS__)
 #endif

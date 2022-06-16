@@ -60,6 +60,7 @@ static struct usb_device *find_usb_device(uint16_t vendor, uint16_t product)
   struct usb_device *dev;
   struct usb_bus *busses;
   //
+  DEBUG("find %04x:%04x\n",vendor,product);
   usb_init();
   usb_find_busses();
   usb_find_devices();
@@ -124,6 +125,7 @@ int read_buf(int ep,uchar *buf, int len)
 
 void *usb_process(void* dummy)
 {
+  DEBUG("USB Process started\n"); 
   int reinit_timer;
   //
   while (true)
