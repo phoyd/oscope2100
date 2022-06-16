@@ -33,7 +33,31 @@ find_library(LIBUSB_LIBRARY
 target_include_directories(oscope2100 PRIVATE ${LIBUSB_INCLUDE_DIR})
 target_link_libraries(oscope2100 PRIVATE ${LIBUSB_LIBRARY})
 
-set(SHAREDIR ${CMAKE_INSTALL_PREFIX}/share/dso2100)
-configure_file(udev/dso2100.rules 99-dso2100.rules @ONLY)
-
 install(TARGETS oscope2100 DESTINATION bin)
+
+
+set(SHAREDIR ${CMAKE_INSTALL_PREFIX}/share/dso2100)
+configure_file(udev/dso2100.rules.in dso2100.rules @ONLY)
+install(FILES ${CMAKE_BINARY_DIR}/dso2100.rules DESTINATION ${SHAREDIR}) 
+
+#--- dsoextractfw
+
+add_executable(dsoextractfw src/dsoextractfw.c)
+
+find_path (LIBBFD_INCLUDE_DIRS
+  NAMES
+    bfd.h
+  PATHS
+    ENV CPATH)
+
+find_library (LIBBFD_LIBRARIES
+  NAMES
+    bfd
+  PATHS
+    ENV LIBRARY_PATH
+    ENV LD_LIBRARY_PATH)
+
+target_include_directories(dsoextractfw PRIVATE ${LIBBFD_INCLUDE_DIRS})
+target_link_libraries(dsoextractfw PRIVATE ${LIBBFD_LIBRARIES})
+    
+install(TARGETS dsoextractfw DESTINATION bin)
