@@ -126,7 +126,7 @@ int read_buf(int ep,uchar *buf, int len)
 void *usb_process(void* dummy)
 {
   DEBUG("USB Process started\n"); 
-  int reinit_timer;
+  int reinit_timer=100;
   //
   while (true)
   {
